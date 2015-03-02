@@ -9,11 +9,11 @@ from numpy import array
 # Will now add an Eagle to Boids
 
 class Boid(object):
-    def __init__(self,x,y,xv,yv,owner,species="Starling"):
+    def __init__(self,x,y,xv,yv,owner):
         self.position=array([x,y])
         self.velocity=array([xv,yv])
         self.owner=owner
-        self.species=species
+        
 
     def interaction(self,other):
         delta_v=array([0.0,0.0])
@@ -26,9 +26,9 @@ class Boid(object):
                 delta_v-=(separation*self.owner.eagle_fear)/separation.dot(separation)
                 return delta_v
 
-        if self.species=="Eagle":
+        #if self.species=="Eagle":
             # Hunt the boids
-            delta_v+=separation*self.owner.eagle_hunt_strength
+            #delta_v+=separation*self.owner.eagle_hunt_strength
         else:
             # Fly towards the middle
             delta_v+=separation*self.owner.flock_attraction
@@ -44,9 +44,14 @@ class Boid(object):
         return delta_v
         
 class starling(Boids):
+    def flee()
 
 class eagle(Boids):
-    
+    def hunt(self, other):
+        delta_v=array([0.0,0.0])
+        separation=other.position-self.position
+        separation_sq=separation.dot(separation)
+        delta_v+=separation*self.owner.eagle_hunt_strength
 
 
 # Deliberately terrible code for teaching purposes
